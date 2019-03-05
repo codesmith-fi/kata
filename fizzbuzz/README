@@ -5,7 +5,18 @@ Description:
 ------------
 Implement a program which goes through numbers from 1 to 100 and prints
 either Fizz, Buzz, FizzBuzz or the number itself depending if it is 
-divisible by three, five, both or neither.
+divisible by three, five, both or neither OR contains a character "3" or 5.
+
+Usage:
+- Check numbers 1 to 100
+	java -jar fizzbuzz.jar
+- Check a certain number
+	java -jar fizzbuzz.jar {number}
+  e.g. 
+	java -jar fizzbuzz.jar 1	Result "1"
+	java -jar fizzbuzz.jar 13	Result "Fizz"
+	java -jar fizzbuzz.jar 53	Result "FizzBuzz"
+	java -jar fizzbuzz.jar 51	Result "Buzz"
 
 Solution:
 ---------
@@ -22,3 +33,13 @@ Release 1.0 - Stage1:
 	- Buzz if the number is divisible by five
 	- FizzBuzz if both of the above
 	- Number itself if neither Fizz or Buzz
+
+Release 2.0 - Stage2 - new requirements
+- As release 1.0 but now also checks if the given number contains 3 or 5.
+  Result is the same as in v1.0 with these additions
+	- Fizz if the number contains "3"
+	- Buzz if the number contains "5"
+	- FizzBuzz if both of the above
+- A number can be given in command line, if nothing is given numbers
+  1-100 are evaluated
+
