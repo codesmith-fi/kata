@@ -31,19 +31,23 @@ public final class FizzBuzz {
 		// Go though numbers from 1 to 100 and print out either "Fizz", "Buzz", "FizzBuzz"
 		// or the number itself depending on if the number is divisible by three, five 
 		// or neither
+		System.out.printf("Checking numbers from 1 to 100 for Fizz/Buzz:%n");
 		for(int i = 1; i <= 100; i++) {
 			String value = String.valueOf(i);
-			if(FizzBuzzEvaluator.isFizz(value)) {
-				System.out.print("Fizz");
-			}
-			if(FizzBuzzEvaluator.isBuzz(value)) {
-				System.out.print("Buzz");
-			}
-			if(!FizzBuzzEvaluator.isFizz(value) && !FizzBuzzEvaluator.isBuzz(value)) {
-				System.out.print(i);		
-			}
-			System.out.println("");
+			FizzBuzz.checkString(value);
 		}
 	}
-
+	
+	public static void checkString(String valueStr) {
+		if(FizzBuzzEvaluator.isFizz(valueStr)) {
+			System.out.print("Fizz");
+		}
+		if(FizzBuzzEvaluator.isBuzz(valueStr)) {
+			System.out.print("Buzz");
+		}
+		if(!FizzBuzzEvaluator.isFizz(valueStr) && !FizzBuzzEvaluator.isBuzz(valueStr)) {
+			System.out.print(i);		
+		}
+		System.out.println("");		
+	}
 }
