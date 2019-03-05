@@ -32,13 +32,14 @@ public final class FizzBuzz {
 		// or the number itself depending on if the number is divisible by three, five 
 		// or neither
 		for(int i = 1; i <= 100; i++) {
-			if(FizzBuzzEvaluator.isFizz(i)) {
+			String value = String.valueOf(i);
+			if(FizzBuzzEvaluator.isFizz(value)) {
 				System.out.print("Fizz");
 			}
-			if(FizzBuzzEvaluator.isBuzz(i)) {
+			if(FizzBuzzEvaluator.isBuzz(value)) {
 				System.out.print("Buzz");
 			}
-			if(!FizzBuzzEvaluator.isFizz(i) && !FizzBuzzEvaluator.isBuzz(i)) {
+			if(!FizzBuzzEvaluator.isFizz(value) && !FizzBuzzEvaluator.isBuzz(value)) {
 				System.out.print(i);		
 			}
 			System.out.println("");

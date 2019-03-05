@@ -34,8 +34,8 @@ class FizzBuzzEvaluatorTest {
 	 */
 	@DisplayName("Number is divisable by three (isFizz returns true)")
 	@ParameterizedTest(name ="Number {0} is divisable by three (Fizz)")
-	@ValueSource(ints = {3, 6, 9, 12, 15, 18, 21, 24})
-	void testIsFizzValid(int number) {
+	@ValueSource(strings = {"3", "6", "9", "12", "15", "18", "21", "24"})
+	void testIsFizzValid(String number) {
 		assertTrue(FizzBuzzEvaluator.isFizz(number));
 	}
 
@@ -44,8 +44,8 @@ class FizzBuzzEvaluatorTest {
 	 */
 	@DisplayName("Number is not divisable by three (isFizz returns false)")
 	@ParameterizedTest(name ="Number {0} is not divisable by three (Fizz)")
-	@ValueSource(ints = {0, 1, 2, 4, 5, 7, 8, 10, 11, 13})
-	void testIsInFizzValid(int number) {
+	@ValueSource(strings = {"0", "1", "2", "4", "5", "7", "8", "10", "11", "13"})
+	void testIsInFizzValid(String number) {
 		assertFalse(FizzBuzzEvaluator.isFizz(number));
 	}	
 	
@@ -54,8 +54,8 @@ class FizzBuzzEvaluatorTest {
 	 */
 	@DisplayName("Number is divisable by five (isBuzz returns true)")
 	@ParameterizedTest(name ="Number {0} is divisable by five (Buzz)")
-	@ValueSource(ints = {5, 10, 15, 20, 25, 30, 35, 40})
-	void testIsBuzzValid(int number) {
+	@ValueSource(strings = {"5", "10", "15", "20", "25", "30", "35", "40"})
+	void testIsBuzzValid(String number) {
 		assertTrue(FizzBuzzEvaluator.isBuzz(number));
 	}
 
@@ -64,8 +64,8 @@ class FizzBuzzEvaluatorTest {
 	 */
 	@DisplayName("Number is not divisable by five (isBuzz returns false)")
 	@ParameterizedTest(name ="Number {0} is not divisable by five (Buzz)")
-	@ValueSource(ints = {0, 1, 2, 3, 4, 6, 7, 8, 9, 11})
-	void testIsBuzzInvalid(int number) {
+	@ValueSource(strings = {"0", "1", "2", "3", "4", "6", "7", "8", "9", "11"})
+	void testIsBuzzInvalid(String number) {
 		assertFalse(FizzBuzzEvaluator.isBuzz(number));
 	}
 }
