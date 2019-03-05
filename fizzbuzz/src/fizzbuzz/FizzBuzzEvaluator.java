@@ -30,16 +30,4 @@ public class FizzBuzzEvaluator {
 	public static boolean isBuzz(int number) {
 		return ((number % 5 == 0) && (number != 0));
 	}
-	
-	/**
-	 * Helper method to check that the given number is not either Fizz or
-	 * Buzz.
-	 * 
-	 * @param number A number to be checked against Fizz/Buzz rule
-	 * @return true if the number is not divisable by three or five
-	 * 	otherwise false
-	 */
-	public static boolean isNotFizzBuzz(int number) {
-		return !isFizz(number) && !isBuzz(number);
-	}
 }
