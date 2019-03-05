@@ -1,0 +1,24 @@
+FizzBuzz kata - http://codingdojo.org/kata/FizzBuzz/
+Author: Erno Pakarinen (erpakari@gmail.com)
+
+Description:
+------------
+Implement a program which goes through numbers from 1 to 100 and prints
+either Fizz, Buzz, FizzBuzz or the number itself depending if it is 
+divisible by three, five, both or neither.
+
+Solution:
+---------
+Project implemented using Eclipse IDE (Photon) and the tests done JUnit
+Jupiter.
+
+Project was done using TDD so the tests were written first.
+
+Release 1.0 - Stage1:
+---------------------
+- Goes through numbers 1 to 100 and prints out either Fizz, Buzz, FizzBuzz
+  or the number itself. 
+	- Fizz if the number is divisible by three
+	- Buzz if the number is divisible by five
+	- FizzBuzz if both of the above
+	- Number itself if neither Fizz or Buzz
