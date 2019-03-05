@@ -7,7 +7,7 @@ package fizzbuzz;
  * @author erno
  *
  */
-public final class app {
+public final class FizzBuzz {
 
 	/**
 	 * Program entry point for the FizzBuzz application. Displays output in 
@@ -23,7 +23,26 @@ public final class app {
 	 *@return String "Fizz", "Buzz" or the number itself if argument was given
 	 */
 	public static void main(String[] args) {
-		System.out.print("Not implemented yet!\n");
+		// Todo: Arguments not yet implemented 
+		if(args.length > 0) {
+			throw new IllegalArgumentException("Arguments not yet implemented!");
+		}
+		
+		// Go though numbers from 1 to 100 and print out either "Fizz", "Buzz", "FizzBuzz"
+		// or the number itself depending on if the number is divisible by three, five 
+		// or neither
+		for(int i = 1; i <= 100; i++) {
+			if(FizzBuzzEvaluator.isFizz(i)) {
+				System.out.print("Fizz");
+			}
+			if(FizzBuzzEvaluator.isBuzz(i)) {
+				System.out.print("Buzz");
+			}
+			if(!FizzBuzzEvaluator.isFizz(i) && !FizzBuzzEvaluator.isBuzz(i)) {
+				System.out.print(i);		
+			}
+			System.out.println("");
+		}
 	}
 
 }
