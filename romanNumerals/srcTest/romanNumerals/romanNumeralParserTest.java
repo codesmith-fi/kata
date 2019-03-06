@@ -2,10 +2,15 @@ package romanNumerals;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class romanNumeralParserTest {
@@ -27,17 +32,68 @@ class romanNumeralParserTest {
 	}
 
 	@Test
-	void testParseInt_1() {
-		assertEquals("I", romanNumeralParser.parseInt(1));
-	}
-	
+	@DisplayName("Convert 0 into Roman numeral, must give an empty result")
+	void testParseInt_0() {
+		assertTrue(romanNumeralParser.parseInt(0).isEmpty());
+	}	
+
 	@Test
-	void testParseInt_5() {
-		assertEquals("V", romanNumeralParser.parseInt(5));
+	@DisplayName("Convert from 1 to 10 into Roman numeral and verify the results")
+	void testParseInt_1to20() {
+		// Expected results in array
+		String expectedResults[] = new String[] {
+				"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", 
+				"X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII",
+				"XVIII", "XIX", "XX"
+		};
+		
+		// Create computed results with the converter
+		ArrayList<String> results = new ArrayList<String>();
+		results.add(""); // Special case for 0, not a Roman numeral
+		for(int i=1; i<=20; ++i) {
+			results.add(romanNumeralParser.parseInt(i));
+		}
+		
+		for(int i=1; i<=20; ++i) {
+			String failMsg = String.format("Fail: %d should be %s but was %s", 
+					i, expectedResults[i], results.get(i));
+			assertTrue(expectedResults[i].equals(results.get(i)), failMsg);
+		}
 	}
-	
+
 	@Test
-	void testParseInt_1900() {
-		assertEquals("MCM", romanNumeralParser.parseInt(1900));
+	@DisplayName("Convert specific numbers into Roman numeral and verify the results")
+	void testParseInt_selectedNumbers() {
+		// Expected results in array
+		String expectedResults[] = new String[] {
+				"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
+				"D", "DC", "CM", "M", "MC", "MMCM", "MMM"
+		};
+
+		// Integers to be converted and verified against their expected
+		// results
+		Integer testedNumbers[] = new Integer[] {
+				11, 15, 21, 40, 50, 90, 100, 110, 400,
+				500, 600, 900, 1000, 1100, 2900, 3000
+		};
+		
+		// Verify that the test case is not insane
+		assertEquals(expectedResults.length, testedNumbers.length);
+		
+		for(int i=0; i < testedNumbers.length; ++i) {
+			String result = romanNumeralParser.parseInt(testedNumbers[i]);
+			String failMsg = String.format("Fail: %d should be %s but was %s", 
+					testedNumbers[i], expectedResults[i], result);
+			assertEquals(result, expectedResults[i], failMsg);
+		}		
+	}
+		
+	@Test
+	@DisplayName("Convert integers from 1 to 3000 into Roman numeral, must give a result")
+	void testParseIntWithRange() {
+		for(int i=1; i<=3000; ++i) {
+			String roman = romanNumeralParser.parseInt(i);
+			assertFalse(roman.isEmpty());
+		}
 	}
 }

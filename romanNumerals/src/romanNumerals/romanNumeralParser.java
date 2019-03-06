@@ -1,6 +1,5 @@
 package romanNumerals;
 
-import java.lang.Exception;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,34 +7,44 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+/**
+ * Roman numeral parser, stage 1, converts integer into roman.
+ * 
+ * Algorithm description from the page:
+ *  https://www.rapidtables.com/convert/number/roman-numerals-converter.html
+ * @author erno
+ *
+ */
 public class romanNumeralParser {
-	private final static int INTEGER_1 = 1;
-	private final static int INTEGER_4 = 4;
-	private final static int INTEGER_5 = 5;
-	private final static int INTEGER_9 = 9;
-	private final static int INTEGER_10 = 10;
-	private final static int INTEGER_40 = 40;
-	private final static int INTEGER_50 = 50;
-	private final static int INTEGER_90 = 90;
-	private final static int INTEGER_100 = 100;
-	private final static int INTEGER_400 = 400;
-	private final static int INTEGER_500 = 500;
-	private final static int INTEGER_900 = 900;
-	private final static int INTEGER_1000 = 1000;
+	// Integer constants for the integer/roman conversion
+	public final static int INTEGER_1 = 1;
+	public final static int INTEGER_4 = 4;
+	public final static int INTEGER_5 = 5;
+	public final static int INTEGER_9 = 9;
+	public final static int INTEGER_10 = 10;
+	public final static int INTEGER_40 = 40;
+	public final static int INTEGER_50 = 50;
+	public final static int INTEGER_90 = 90;
+	public final static int INTEGER_100 = 100;
+	public final static int INTEGER_400 = 400;
+	public final static int INTEGER_500 = 500;
+	public final static int INTEGER_900 = 900;
+	public final static int INTEGER_1000 = 1000;
 	
-	private final static String ROMAN_1 = "I";
-	private final static String ROMAN_4 = "IV";
-	private final static String ROMAN_5 = "V";
-	private final static String ROMAN_9 = "IX";
-	private final static String ROMAN_10 = "X";
-	private final static String ROMAN_40 = "XL";
-	private final static String ROMAN_50 = "L";
-	private final static String ROMAN_90 = "XC";
-	private final static String ROMAN_100 = "C";
-	private final static String ROMAN_400 = "CD";
-	private final static String ROMAN_500 = "D";
-	private final static String ROMAN_900 = "CM";
-	private final static String ROMAN_1000 = "M";
+	// String constants for the integer/roman conversion
+	public final static String ROMAN_1 = "I";
+	public final static String ROMAN_4 = "IV";
+	public final static String ROMAN_5 = "V";
+	public final static String ROMAN_9 = "IX";
+	public final static String ROMAN_10 = "X";
+	public final static String ROMAN_40 = "XL";
+	public final static String ROMAN_50 = "L";
+	public final static String ROMAN_90 = "XC";
+	public final static String ROMAN_100 = "C";
+	public final static String ROMAN_400 = "CD";
+	public final static String ROMAN_500 = "D";
+	public final static String ROMAN_900 = "CM";
+	public final static String ROMAN_1000 = "M";
 	
 	/**
 	 * Map for evaluating a numerical value into Roman string representation
@@ -64,18 +73,18 @@ public class romanNumeralParser {
 		    });
 	
 	/**
-	 * Display a roman number representation of the given integer value
-	 * @param value numerical value to be converted to roman numericals
-	 * @return roman number representation of the parameter value
+	 * Display a Roman number representation of the given integer value
+	 * @param value numerical value to be converted to Roman numerals
+	 * @return Roman number representation of the parameter value
 	 */
 	public static String parseInt(int value) {
 		Set<Entry<Integer, String>> myMapSet = myRomanMap.entrySet();
 		String romanStr = new String();
 		int x = value;
 		// Loop until the whole integer has been handled. On each iteration
-		// it finds the highest roman numerical (I, V, etc.) from the map 
-		// when compared to the remaining unprocessed int value. 
-		// This roman numerical string is appended to the result string
+		// it finds the highest Roman numerical (I, V, etc.) from the map 
+		// when compared to the remaining unprocessed integer value. 
+		// This Roman numerical string is appended to the result string
 		//
 		// For example, for number 6, start with x = 6
 		// 		Iteration	x		highest	roman
@@ -98,12 +107,12 @@ public class romanNumeralParser {
 			while(myMapIter.hasNext()) {
 				Map.Entry<Integer, String> entry=(Map.Entry<Integer, String>)myMapIter.next();
 				int intValue = entry.getKey();
-				// Get highest int value smaller than the remainder from last
+				// Get highest integer value smaller than the remainder from last
 				// iteration from the Map. This value is used as a key
-				// for the roman string representation of the found int value
+				// for the Roman string representation of the found integer value
 				highest = ( intValue <= x && highest < intValue) ? intValue : highest;  
 			}			
-			// That part of the roman numerical is taken care of, reduce it's
+			// That part of the Roman numerical is taken care of, reduce it's
 			// value from the remaining numerical value for next iteration
 			x = x - highest;
 			romanStr = romanStr + myRomanMap.get(highest);
