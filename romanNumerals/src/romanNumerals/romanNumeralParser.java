@@ -8,7 +8,11 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * Roman numeral parser, stage 1, converts integer into roman.
+ * Roman numeral parser, converts between Roman numerals and integer values
+ * 	stage 1, converts integer into Roman (10 -> X)
+ *  stage 2, converts Roman into integers (X -> 10)
+ * 
+ * Unit tests in romanNumeralParserTest.java
  * 
  * Algorithm description from the page:
  *  https://www.rapidtables.com/convert/number/roman-numerals-converter.html
