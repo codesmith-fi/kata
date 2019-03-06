@@ -8,6 +8,7 @@ import java.util.HashMap;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -97,6 +98,14 @@ class romanNumeralParserTest {
 		}
 	}
 
+	@Test
+	@DisplayName("Parse roman numeral which is not valid")
+	void testParseRomanWithIllegal() {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				romanNumeralParser.parseRoman("");
+		});
+	}
+	
 	@Test
 	@DisplayName("Parse roman numerals to produce a integer values")
 	void testParseRoman() {

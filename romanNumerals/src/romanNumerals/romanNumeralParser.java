@@ -149,13 +149,16 @@ public class romanNumeralParser {
 			}
 			// Add the numerical value of the matched partial to the result
 			// and remove the matched partial from the remainder Roman string
-			if(partialValue == 0) {
-				String errorStr = String.format("\"%s\" is not a valid Roman numeral", 
-						romanStr);
-				throw new IllegalArgumentException(errorStr);
-			}
 			result += partialValue;
 			remainderStr.delete(0, partialLength);
+		}
+		
+		// In case of the romanStr not being a valid Roman numeral, 
+		// throw an exception, 0 is not an valid Roman numeral value
+		if(result == 0) {
+			String errorStr = String.format("\"%s\" is not a valid Roman numeral", 
+					romanStr);
+			throw new IllegalArgumentException(errorStr);
 		}
 		return result;
 	}	
