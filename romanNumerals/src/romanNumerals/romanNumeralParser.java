@@ -124,8 +124,39 @@ public class romanNumeralParser {
 	 * Convert a Roman numeral string into integer
 	 * @param String representation of a Roman numeral
 	 * @return integer value of the Roman numeral submitted
+	 * @throws IllegalArgumentException if the given Roman numeral is not valid
 	 */
-	public static int parseRoman(String romanStr) {
-		return 0;
+	public static int parseRoman(String romanStr) throws IllegalArgumentException {
+		int result = 0;
+		StringBuffer remainderStr = new StringBuffer(romanStr);
+		// Iterate until the whole Roman numeral string has been processed
+		while(remainderStr.length() != 0) {
+			// Iterate all known Roman numeral strings we know about
+			int partialValue=0;
+			int partialLength=0;
+			for(int value: myRomanMap.keySet()) {
+				String candidate = myRomanMap.get(value);
+				// Get a string from the beginning of the remaining Roman
+				// numeral. Length how much to get is candidates length.		
+				String partial = remainderStr.length() >= candidate.length() ?
+						remainderStr.substring(0, candidate.length()) : "";
+				// If partial equals the candidate take the numerical
+				// value of it
+				if(candidate.equals(partial) && partialValue < value ) {
+					partialValue = value;
+					partialLength = partial.length();
+				}
+			}
+			// Add the numerical value of the matched partial to the result
+			// and remove the matched partial from the remainder Roman string
+			if(partialValue == 0) {
+				String errorStr = String.format("\"%s\" is not a valid Roman numeral", 
+						romanStr);
+				throw new IllegalArgumentException(errorStr);
+			}
+			result += partialValue;
+			remainderStr.delete(0, partialLength);
+		}
+		return result;
 	}	
 }
