@@ -132,8 +132,8 @@ public class romanNumeralParser {
 		// Iterate until the whole Roman numeral string has been processed
 		while(remainderStr.length() != 0) {
 			// Iterate all known Roman numeral strings we know about
-			int partialValue=0;
 			int partialLength=0;
+			int partialValue=0;
 			for(int value: myRomanMap.keySet()) {
 				String candidate = myRomanMap.get(value);
 				// Get a string from the beginning of the remaining Roman
@@ -146,6 +146,13 @@ public class romanNumeralParser {
 					partialValue = value;
 					partialLength = partial.length();
 				}
+			}
+			
+			// Bail out if the Roman number is not valid, no matching token
+			// was found.
+			if(partialValue == 0) {
+				result = 0;
+				break;
 			}
 			// Add the numerical value of the matched partial to the result
 			// and remove the matched partial from the remainder Roman string

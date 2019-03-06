@@ -101,9 +101,22 @@ class romanNumeralParserTest {
 	@Test
 	@DisplayName("Parse roman numeral which is not valid")
 	void testParseRomanWithIllegal() {
+		System.out.println("empty");
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 				romanNumeralParser.parseRoman("");
 		});
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			romanNumeralParser.parseRoman("ABC");
+		});		
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			romanNumeralParser.parseRoman("VI1");
+		});				
+
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			romanNumeralParser.parseRoman("1VI");
+		});	
 	}
 	
 	@Test
