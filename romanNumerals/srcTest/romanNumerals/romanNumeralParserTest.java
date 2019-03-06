@@ -72,7 +72,7 @@ class romanNumeralParserTest {
 
 		// Integers to be converted and verified against their expected
 		// results
-		Integer testedNumbers[] = new Integer[] {
+		int testedNumbers[] = new int[] {
 				11, 15, 21, 40, 50, 90, 100, 110, 400,
 				500, 600, 900, 1000, 1100, 2900, 3000
 		};
@@ -84,7 +84,7 @@ class romanNumeralParserTest {
 			String result = romanNumeralParser.parseInt(testedNumbers[i]);
 			String failMsg = String.format("Fail: %d should be %s but was %s", 
 					testedNumbers[i], expectedResults[i], result);
-			assertEquals(result, expectedResults[i], failMsg);
+			assertEquals(expectedResults[i], result, failMsg);
 		}		
 	}
 		
@@ -96,4 +96,34 @@ class romanNumeralParserTest {
 			assertFalse(roman.isEmpty());
 		}
 	}
+
+	@Test
+	@DisplayName("Parse roman numerals to produce a integer values")
+	void testParseRoman() {
+		// Roman numerals to be converted to integer
+		String romanStrings[] = new String[] {
+				"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+				"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
+				"D", "DC", "CM", "M", "MC", "MMCM", "MMM"
+		};
+
+		// Expected integer results for the romanStrings conversion
+		int expectedResults[] = new int[] {
+				1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+				11, 15, 21, 40, 50, 90, 100, 110, 400,
+				500, 600, 900, 1000, 1100, 2900, 3000
+		};
+
+		// Verify that the test case is not insane
+		assertEquals(romanStrings.length, expectedResults.length);
+		
+		// Verify the conversion results
+		for(int i=0; i < expectedResults.length; ++i) {
+			int result = romanNumeralParser.parseRoman(romanStrings[i]);
+			String failStr = String.format(
+					"\"%s\" should produce value %d but result was %d", 
+					romanStrings[i], expectedResults[i], result);
+			assertEquals(expectedResults[i], result, failStr);
+		}
+	}	
 }

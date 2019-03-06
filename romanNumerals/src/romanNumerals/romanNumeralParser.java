@@ -119,4 +119,13 @@ public class romanNumeralParser {
 		}
 		return romanStr;
 	}
+	
+	/**
+	 * Convert a Roman numeral string into integer
+	 * @param String representation of a Roman numeral
+	 * @return integer value of the Roman numeral submitted
+	 */
+	public static int parseRoman(String romanStr) {
+		return 0;
+	}	
 }
