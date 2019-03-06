@@ -3,9 +3,6 @@ package romanNumerals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit test cases for romanNumeralParser class
+ * @author erno
+ *
+ */
 class romanNumeralParserTest {
 
 	@BeforeAll
@@ -39,7 +41,7 @@ class romanNumeralParserTest {
 	}	
 
 	@Test
-	@DisplayName("Convert from 1 to 10 into Roman numeral and verify the results")
+	@DisplayName("Convert from 1 to 20 into Roman numeral and verify the results")
 	void testParseInt_1to20() {
 		// Expected results in array
 		String expectedResults[] = new String[] {
@@ -49,17 +51,12 @@ class romanNumeralParserTest {
 		};
 		
 		// Create computed results with the converter
-		ArrayList<String> results = new ArrayList<String>();
-		results.add(""); // Special case for 0, not a Roman numeral
 		for(int i=1; i<=20; ++i) {
-			results.add(romanNumeralParser.parseInt(i));
-		}
-		
-		for(int i=1; i<=20; ++i) {
+			String result = romanNumeralParser.parseInt(i);
 			String failMsg = String.format("Fail: %d should be %s but was %s", 
-					i, expectedResults[i], results.get(i));
-			assertTrue(expectedResults[i].equals(results.get(i)), failMsg);
-		}
+					i, expectedResults[i], result);
+			assertTrue(expectedResults[i].equals(result), failMsg);
+		}	
 	}
 
 	@Test
