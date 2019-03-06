@@ -3,3 +3,15 @@ and algorithms.
 
 Original author: Erno Pakarinen (erpakari@gmail.com)
 
+Current content
+
+fizzbuzz
+--------
+An implementation of FizzBuzz kata (http://codingdojo.org/kata/FizzBuzz/) in java. 
+Includes tests (JUnit5), no GUI.
+
+romanNumerals
+An implementation of Roman Numerals kata (http://codingdojo.org/kata/RomanNumerals/)
+
+Converts between Roman numeral strings and integers. Includes tests (JUnit5), No GUI.
+
