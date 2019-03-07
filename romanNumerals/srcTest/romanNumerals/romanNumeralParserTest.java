@@ -36,7 +36,7 @@ class romanNumeralParserTest {
 	@Test
 	@DisplayName("Convert 0 into Roman numeral, must give an empty result")
 	void testParseInt_0() {
-		assertTrue(romanNumeralParser.parseInt(0).isEmpty());
+		assertTrue(RomanNumeralParser.parseInt(0).isEmpty());
 	}	
 
 	@Test
@@ -51,7 +51,7 @@ class romanNumeralParserTest {
 		
 		// Create computed results with the converter
 		for(int i=1; i<=20; ++i) {
-			String result = romanNumeralParser.parseInt(i);
+			String result = RomanNumeralParser.parseInt(i);
 			String failMsg = String.format("Fail: %d should be %s but was %s", 
 					i, expectedResults[i], result);
 			assertTrue(expectedResults[i].equals(result), failMsg);
@@ -78,7 +78,7 @@ class romanNumeralParserTest {
 		assertEquals(expectedResults.length, testedNumbers.length);
 		
 		for(int i=0; i < testedNumbers.length; ++i) {
-			String result = romanNumeralParser.parseInt(testedNumbers[i]);
+			String result = RomanNumeralParser.parseInt(testedNumbers[i]);
 			String failMsg = String.format("Fail: %d should be %s but was %s", 
 					testedNumbers[i], expectedResults[i], result);
 			assertEquals(expectedResults[i], result, failMsg);
@@ -89,7 +89,7 @@ class romanNumeralParserTest {
 	@DisplayName("Convert integers from 1 to 3000 into Roman numeral, must give a result")
 	void testParseIntWithRange() {
 		for(int i=1; i<=3000; ++i) {
-			String roman = romanNumeralParser.parseInt(i);
+			String roman = RomanNumeralParser.parseInt(i);
 			assertFalse(roman.isEmpty());
 		}
 	}
@@ -98,19 +98,19 @@ class romanNumeralParserTest {
 	@DisplayName("Parse roman numeral which is not valid")
 	void testParseRomanWithIllegal() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-				romanNumeralParser.parseRoman("");
+				RomanNumeralParser.parseRoman("");
 		});
 		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			romanNumeralParser.parseRoman("ABC");
+			RomanNumeralParser.parseRoman("ABC");
 		});		
 		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			romanNumeralParser.parseRoman("VI1");
+			RomanNumeralParser.parseRoman("VI1");
 		});				
 
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			romanNumeralParser.parseRoman("1VI");
+			RomanNumeralParser.parseRoman("1VI");
 		});	
 	}
 	
@@ -136,7 +136,7 @@ class romanNumeralParserTest {
 		
 		// Verify the conversion results
 		for(int i=0; i < expectedResults.length; ++i) {
-			int result = romanNumeralParser.parseRoman(romanStrings[i]);
+			int result = RomanNumeralParser.parseRoman(romanStrings[i]);
 			String failStr = String.format(
 					"\"%s\" should produce value %d but result was %d", 
 					romanStrings[i], expectedResults[i], result);

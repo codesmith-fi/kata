@@ -19,7 +19,7 @@ import java.util.Set;
  * @author erno
  *
  */
-public class romanNumeralParser {
+public class RomanNumeralParser {
 	// Integer constants for the integer/roman conversion
 	public final static int INTEGER_1 = 1;
 	public final static int INTEGER_4 = 4;
