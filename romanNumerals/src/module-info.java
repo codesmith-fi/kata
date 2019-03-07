@@ -6,4 +6,5 @@
  *
  */
 module romanNumerals {
+	requires java.desktop;
 }
