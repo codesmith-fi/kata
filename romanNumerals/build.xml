@@ -1,0 +1,111 @@
+<project name="romanNumerals" default="main" basedir=".">
+    <description>Ant build for the project</description>
+    <property name="bin.project.dir" location="bin" />
+    <property name="bin.test.dir" location="binTest" />
+    <property name="src.project.dir" location="src/${ant.project.name}" />
+    <property name="src.test.dir" location="srcTest/${ant.project.name}" />
+    <property name="distribution.dir" location="release" />
+    <property name="testreport.dir" location="junit" />
+    <property name="testreport.html.dir" location="${testreport.dir}/html" />
+    <path id="src.project.classpath">
+        <fileset dir="${src.project.dir}">
+            <include name="**/*java" />
+        </fileset>
+    </path>
+    <path id="src.test.classpath">
+        <fileset dir="${src.test.dir}">
+            <include name="**/*java" />
+        </fileset>
+    </path>
+    <path id="bin.project.classpath">
+        <fileset dir="${bin.project.dir}">
+            <include name="**/*class" />
+        </fileset>
+    </path>
+    <path id="bin.test.classpath">
+        <fileset dir="${bin.test.dir}">
+            <include name="**/*class" />
+        </fileset>
+    </path>
+
+    <path id="junit.classpath">
+        <fileset dir="${basedir}/../extlib" includes="**/*.jar"/>
+        <fileset dir="${ant.home}/lib" includes="*.jar" />
+    </path>
+
+    <target name="main" depends="compile" />
+
+    <target name="init" depends="clean">
+        <echo message="Test - ${build.dir}" />
+        <mkdir dir="${bin.project.dir}" />
+        <mkdir dir="${bin.test.dir}" />
+        <mkdir dir="${distribution.dir}" />
+        <mkdir dir="${testreport.dir}" />
+        <mkdir dir="${testreport.html.dir}" />
+    </target>
+    <target name="clean" description="Remove build directories">
+        <delete dir="${bin.project.dir}" failonerror="false"/>
+        <delete dir="${bin.test.dir}" failonerror="false"/>
+        <delete dir="${testreport.dir}" failonerror="false"/>
+        <delete dir="${distribution.dir}" failonerror="false"/>
+        <delete dir="${testreport.html.dir}" failonerror="false" />
+    </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${src.project.dir}"
+            destdir="${bin.project.dir}"
+            includeantruntime="false"/>
+    </target>
+    <target name="test" depends="jar">
+        <javac srcdir="${src.test.dir}"
+            destdir="${bin.test.dir}"
+            includeantruntime="false">
+            <classpath refid="junit.classpath" />
+            <classpath location="${bin.project.dir}" />
+            <classpath location="${bin.test.dir}" />
+        </javac>
+        <jar destfile="${distribution.dir}/${ant.project.name}_test.jar"
+            basedir="${bin.test.dir}">
+        </jar>
+        <junit haltonfailure="false" printsummary="true">
+            <classpath refid="junit.classpath" />
+            <classpath location="${distribution.dir}/${ant.project.name}_test.jar" />
+            <classpath location="${distribution.dir}/${ant.project.name}.jar" />
+            <test name="romanNumerals.RomanNumeralParserTest"
+                todir="${testreport.dir}" outfile="RomanNumeralParserTest">
+                <formatter type="plain" />
+                <formatter type="xml" />
+            </test>
+            <test name="romanNumerals.ConvertIntegerButtonListenerTest"
+                todir="${testreport.dir}" outfile="ConvertIntegerButtonListenerTest">
+                <formatter type="plain" />
+                <formatter type="xml" />
+            </test>
+            <test name="romanNumerals.ConvertRomanButtonListenerTest"
+                todir="${testreport.dir}" outfile="ConvertRomanButtonListenerTest">
+                <formatter type="plain" />
+                <formatter type="xml" />
+            </test>
+        </junit>
+        <junitreport todir="${testreport.html.dir}">
+            <fileset dir="${testreport.dir}">
+                <include name="*.xml" />
+            </fileset>
+            <report todir="${testreport.html.dir}" />
+        </junitreport>
+    </target>
+    <target name="release" depends="jar" />
+    <target name="jar" depends="compile">
+        <jar destfile="${distribution.dir}/${ant.project.name}.jar"
+            basedir="${bin.project.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="romanNumerals.RomanNumerals" />
+            </manifest>
+        </jar>
+    </target>
+    <target name="run" depends="jar">
+        <java jar="${distribution.dir}/${ant.project.name}.jar" fork="true" />
+    </target>
+    <target name="run" depends="jar">
+        <java jar="${distribution.dir}/${ant.project.name}.jar" fork="true" />
+    </target>
+</project>
