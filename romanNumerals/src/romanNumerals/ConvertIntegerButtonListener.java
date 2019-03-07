@@ -38,15 +38,21 @@ public class ConvertIntegerButtonListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("ConvertIntegerButtonListener::actionPerformed invoked");
 		try {
 			int value = Integer.parseInt(sourceValueTextField.getText());			
 			String roman = RomanNumeralParser.parseInt(value);
-			if(roman.isEmpty()) {
-				resultTextField.setText(TXT_RESULT_UNDEFINED);
-			} else {
-				resultTextField.setText(roman);
+			String resultString = TXT_RESULT_UNDEFINED;
+			if(!roman.isEmpty()) {
+				resultString = roman;
 			}
+			resultTextField.setText(resultString);
+			System.out.printf("  Integer %d is \"%s\" as Roman numeral%n", value, resultString);
 		} catch(NumberFormatException exception) {
+			String failureText = String.format(
+					"  Tried to convert \"%s\" which is not a number", 
+					sourceValueTextField.getText());
+			System.out.println(failureText);
 			resultTextField.setText(TXT_VALUE_NOT_INTEGER);
 		}
 	}	

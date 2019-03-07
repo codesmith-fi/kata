@@ -8,8 +8,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.SequentialGroup;
-import javax.swing.GroupLayout.ParallelGroup;
 
 public class RomanNumerals extends JFrame {
 	// Unmodifiable class constants to be used in the code
@@ -25,6 +23,8 @@ public class RomanNumerals extends JFrame {
 	private static final String TXT_LABEL_CONVERTINTEGER = "Convert value to Roman numeral";
 	private static final String TXT_LABEL_RESULT = "Conversion result:";
 	private static final String TXT_MENUBAR_FILE = "File";	
+	private static final String TXT_ARGUMENT_SHOWROMANS = "-r";
+	private static final String TXT_ARGUMENT_SHOWINTEGERS = "-i";
 	private static final int SIZE_WINDOW_WIDTH = 400;
 	private static final int SIZE_WINDOW_HEIGHT = 300;
 
@@ -32,22 +32,48 @@ public class RomanNumerals extends JFrame {
 		setupUserInterface();
 	}
 	
+	/**
+	 * Without arguments it launches the user interface for the calculator
+	 *
+	 * @param args if first argument is 
+	 * 	-r converts integers to Roman numerals (0-1000)
+	 * 	-i converts set of Roman numerals to integers
+	 */
 	public static void main(String[] args) {
-		/* Commented out for now
-		System.out.println("Roman numbers for 0-1000:");
-		for( int i=0; i<1001; ++i) {
-			String romanStr = romanNumeralParser.parseInt(i);
-			if(romanStr.isEmpty()) {
-				romanStr = "Not a valid Roman numeral";
+		System.out.println("RomanNumerals application startup");
+		if(args.length > 0) {			
+			if(args[0].equals(TXT_ARGUMENT_SHOWROMANS)) {				
+				System.out.println("Converting integers 0-1000 to Roman numerals:");
+				for(int i=0; i<1001; ++i) {
+					String romanStr = RomanNumeralParser.parseInt(i);
+					if(romanStr.isEmpty()) {
+						romanStr = "Not a valid Roman numeral";
+					}
+					System.out.printf("%5d: %s%n", i, romanStr);
+				}
+			} else if(args[0].equals(TXT_ARGUMENT_SHOWINTEGERS)) {
+				System.out.println("Conververting Roman numerals to integers");
+				// Roman numerals to be converted to integer
+				String romanStrings[] = new String[] {
+						"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+						"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
+						"D", "DC", "CM", "M", "MC", "MMCM", "MMM"
+				};
+				for(int i=0; i<romanStrings.length; ++i) {
+					System.out.printf("%s: %d%n", 
+							romanStrings[i],
+							RomanNumeralParser.parseRoman(romanStrings[i]));					
+				}				
+			} else {
+				System.out.printf("Undefined argument \"%s\".%n", args[0]);
 			}
-			System.out.printf("%5d: %s%n", i, romanStr);
+			
 		}
-		*/
-
-		var ui = new RomanNumerals();
-		ui.setVisible(true);
-		
-		
+		else {
+			System.out.println("Displaying the calculator UI");
+			var ui = new RomanNumerals();
+			ui.setVisible(true);
+		}
 	}
 
 	/**

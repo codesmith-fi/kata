@@ -6,7 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -63,8 +62,6 @@ class ConvertRomanButtonListenerTest {
 		// Test case sanity test
 		assertEquals(expectedResults.length, testedRomans.length);
 			
-		sourceField.setText("true");
-		targetField.setText("not");
 		for(int i=0; i<testedRomans.length; ++i) {
 			sourceField.setText(testedRomans[i]);
 			targetField.setText("None");
@@ -74,4 +71,22 @@ class ConvertRomanButtonListenerTest {
 					Integer.parseInt(targetField.getText()));			
 		}		
 	}
+	@Test
+
+	@DisplayName("Test that the event is triggered and fails, multiple invalid roman numerals")
+	void testListenerWithInvalidRomanNumerals() {
+		// Roman numerals to be tested
+		final String testedRomans[] = new String[] {
+				"XIa", "zXV", "not a roman", "whatever", "1I"
+		};
+			
+		for(int i=0; i<testedRomans.length; ++i) {
+			sourceField.setText(testedRomans[i]);
+			targetField.setText("None");
+			// Cause the event
+			actionButton.doClick();
+			assertEquals(targetField.getText(), ConvertRomanButtonListener.TXT_VALUE_NOT_ROMAN);
+		}		
+	}
+	
 }	

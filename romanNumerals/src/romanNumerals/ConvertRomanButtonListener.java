@@ -38,11 +38,20 @@ public class ConvertRomanButtonListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("ConvertIntegerButtonListener::actionPerformed invoked");
 		try {
 			int result = RomanNumeralParser.parseRoman(
 					valueTextField.getText());
-			resultTextField.setText(Integer.toString(result));			
+			String resultString = Integer.toString(result);
+			System.out.printf("  Roman \"%s\" is %s%n", 
+					valueTextField.getText(), resultString);
+			resultTextField.setText(resultString);			
 		} catch(IllegalArgumentException exception) {
+			String failureText = String.format(
+					"  Tried to convert \"%s\" which is not a Roman numeral", 
+					valueTextField.getText());
+			System.out.println(failureText);
+			
 			resultTextField.setText(TXT_VALUE_NOT_ROMAN);
 		}
 	}	

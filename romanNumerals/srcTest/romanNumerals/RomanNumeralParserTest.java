@@ -118,14 +118,14 @@ class RomanNumeralParserTest {
 	@DisplayName("Parse roman numerals to produce a integer values")
 	void testParseRoman() {
 		// Roman numerals to be converted to integer
-		String romanStrings[] = new String[] {
+		final String romanStrings[] = new String[] {
 				"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
 				"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
 				"D", "DC", "CM", "M", "MC", "MMCM", "MMM"
 		};
 
 		// Expected integer results for the romanStrings conversion
-		int expectedResults[] = new int[] {
+		final int expectedResults[] = new int[] {
 				1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 				11, 15, 21, 40, 50, 90, 100, 110, 400,
 				500, 600, 900, 1000, 1100, 2900, 3000
