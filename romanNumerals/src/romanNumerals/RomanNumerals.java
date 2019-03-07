@@ -12,21 +12,21 @@ import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.GroupLayout.ParallelGroup;
 
 public class RomanNumerals extends JFrame {
+	// Unmodifiable class constants to be used in the code
 	private static final long serialVersionUID = -3009379824040728206L;
-	private static String TXT_WINDOW_TITLE = "Roman numberal calculator";
-	private static String TXT_CALCULATE_ROMAN = "Convert";
-	private static String TXT_CALCULATE_INTEGER = "Convert";
-	private static String TXT_BUTTON_QUIT = "Exit";
-	private static String TXT_BUTTON_QUIT_TOOLTIP = "Close the calculator";
-	private static String TXT_INPUT_CONVERTROMAN_TOOLTIP = "Enter a Roman numeral here";
-	private static String TXT_INPUT_CONVERTINTEGER_TOOLTIP = "Enter integer value here";
-	private static String TXT_LABEL_CONVERTROMAN = "Convert Roman to integer value";
-	private static String TXT_LABEL_CONVERTINTEGER = "Convert value to Roman numeral";
-	private static String TXT_LABEL_RESULT = "Conversion result:";
-	private static String TXT_MENUBAR_FILE = "File";
-	
-	private static int SIZE_WINDOW_WIDTH = 400;
-	private static int SIZE_WINDOW_HEIGHT = 300;
+	private static final String TXT_WINDOW_TITLE = "Roman numberal calculator";
+	private static final String TXT_CALCULATE_ROMAN = "Convert";
+	private static final String TXT_CALCULATE_INTEGER = "Convert";
+	private static final String TXT_BUTTON_QUIT = "Exit";
+	private static final String TXT_BUTTON_QUIT_TOOLTIP = "Close the calculator";
+	private static final String TXT_INPUT_CONVERTROMAN_TOOLTIP = "Enter a Roman numeral here";
+	private static final String TXT_INPUT_CONVERTINTEGER_TOOLTIP = "Enter integer value here";
+	private static final String TXT_LABEL_CONVERTROMAN = "Convert Roman to integer value";
+	private static final String TXT_LABEL_CONVERTINTEGER = "Convert value to Roman numeral";
+	private static final String TXT_LABEL_RESULT = "Conversion result:";
+	private static final String TXT_MENUBAR_FILE = "File";	
+	private static final int SIZE_WINDOW_WIDTH = 400;
+	private static final int SIZE_WINDOW_HEIGHT = 300;
 
 	public RomanNumerals() {
 		setupUserInterface();
@@ -68,18 +68,11 @@ public class RomanNumerals extends JFrame {
 		layout.setAutoCreateContainerGaps(true);
 		layout.setAutoCreateGaps(true);
 		pane.setLayout(layout);
-		
-		// Create and initialize the needed buttons
-		var buttonQuit = new JButton(TXT_BUTTON_QUIT);
-		buttonQuit.addActionListener(new QuitListener());
-		buttonQuit.setToolTipText(TXT_BUTTON_QUIT_TOOLTIP);
-		var buttonCalculateRoman = new JButton(TXT_CALCULATE_ROMAN);
-		var buttonCalculateInteger = new JButton(TXT_CALCULATE_INTEGER);
-		
+				
 		// Labels for possible operations
 		var labelConvertRoman = new JLabel(TXT_LABEL_CONVERTROMAN);
 		var labelConvertInteger = new JLabel(TXT_LABEL_CONVERTINTEGER);
-		var labelConversionResult = new JLabel(TXT_LABEL_RESULT);
+		var labelConversionResult = new JLabel(TXT_LABEL_RESULT);		
 		
 		var textInputRoman = new JTextField();
 		textInputRoman.setToolTipText(TXT_INPUT_CONVERTROMAN_TOOLTIP);
@@ -89,6 +82,19 @@ public class RomanNumerals extends JFrame {
 		var textResultValue = new JTextField();
 		textResultValue.setEditable(false);
 		
+		// Create and initialize the needed buttons
+		var buttonQuit = new JButton(TXT_BUTTON_QUIT);
+		buttonQuit.addActionListener(new QuitListener());
+		buttonQuit.setToolTipText(TXT_BUTTON_QUIT_TOOLTIP);
+		var buttonCalculateRoman = new JButton(TXT_CALCULATE_ROMAN);
+		buttonCalculateRoman.addActionListener(
+				new ConvertRomanButtonListener(textResultValue, textInputRoman));
+		buttonCalculateRoman.setActionCommand("roman");
+		var buttonCalculateInteger = new JButton(TXT_CALCULATE_INTEGER);
+		buttonCalculateInteger.addActionListener(
+				new ConvertIntegerButtonListener(textResultValue, textInputInteger));
+		buttonCalculateInteger.setActionCommand("int");
+				
 		// Wanted layout for the components
 		// --------------------------------------
 		// | This is the label for operations   |

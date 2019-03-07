@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * @author erno
  *
  */
-class romanNumeralParserTest {
+class RomanNumeralParserTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -43,7 +43,7 @@ class romanNumeralParserTest {
 	@DisplayName("Convert from 1 to 20 into Roman numeral and verify the results")
 	void testParseInt_1to20() {
 		// Expected results in array
-		String expectedResults[] = new String[] {
+		final String expectedResults[] = new String[] {
 				"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", 
 				"X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII",
 				"XVIII", "XIX", "XX"
@@ -62,14 +62,14 @@ class romanNumeralParserTest {
 	@DisplayName("Convert specific numbers into Roman numeral and verify the results")
 	void testParseInt_selectedNumbers() {
 		// Expected results in array
-		String expectedResults[] = new String[] {
+		final String expectedResults[] = new String[] {
 				"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
 				"D", "DC", "CM", "M", "MC", "MMCM", "MMM"
 		};
 
 		// Integers to be converted and verified against their expected
 		// results
-		int testedNumbers[] = new int[] {
+		final int testedNumbers[] = new int[] {
 				11, 15, 21, 40, 50, 90, 100, 110, 400,
 				500, 600, 900, 1000, 1100, 2900, 3000
 		};
