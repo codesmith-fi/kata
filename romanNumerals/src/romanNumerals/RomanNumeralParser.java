@@ -80,6 +80,10 @@ public class RomanNumeralParser {
 	 * Display a Roman number representation of the given integer value
 	 * Iterative implementation, might be more elegant if done recursively
 	 * but I decided to go with iterative method.
+	 * Please note that it will convert also LARGE numbers but results can 
+	 * be funny looking (but still valid). If I am right Romans did not use
+	 * large numerals.
+	 * 
 	 * @param value numerical value to be converted to Roman numerals
 	 * @return Roman number representation of the parameter value
 	 */
