@@ -1,38 +1,24 @@
 package romanNumerals;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.*;
+import org.junit.*;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 /**
  * Unit test cases for ConvertIntegerButtonListener class
  * @author erno
  *
  */
-class ConvertIntegerButtonListenerTest {
+public class ConvertIntegerButtonListenerTest {
 	// Required classes for the test
 	private JTextField sourceField;
 	private JTextField targetField;
 	private JButton actionButton;
 	private ConvertIntegerButtonListener listener;
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		sourceField =  new JTextField();
 		targetField =  new JTextField();		
 		actionButton = new JButton();
@@ -40,13 +26,12 @@ class ConvertIntegerButtonListenerTest {
 		actionButton.addActionListener(listener);		
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	@Test
-	@DisplayName("Test that the event is triggered and conversion succeeds, multiple values")
-	void testListenerWithValidInteger() {
+	public void testListenerWithValidIntegerEventShouldTriggerAndConversionNotFail() {
 		// Expected results in array
 		final String expectedResults[] = new String[] {
 				"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
@@ -75,8 +60,7 @@ class ConvertIntegerButtonListenerTest {
 	}
 
 	@Test
-	@DisplayName("Test that the event is triggered and conversion fails as expected, multiple invalid values")
-	void testListenerWithInvalidIntegerRange() {
+	public void testListenerWithInvalidIntegersEventShouldTriggerAndConversionFail() {
 		// Expected results in array
 		final String testedNumberStrings[] = new String[] {
 				"not integer", "1A", "A1", "MCMXIV"
@@ -94,8 +78,7 @@ class ConvertIntegerButtonListenerTest {
 	}
 	
 	@Test
-	@DisplayName("Test that the event is triggered and conversion fails as expected, value zero")
-	void testListenerWithInvalidIntegerZero() {					
+	public void testListenerWithInvalidIntegerZeroEventShouldTriggerAndConversionFail() {					
 		sourceField.setText("0");
 		targetField.setText("not");
 		// Cause the event

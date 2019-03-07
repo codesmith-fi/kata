@@ -1,47 +1,38 @@
 package romanNumerals;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+import org.junit.*;
 
 /**
  * Unit test cases for romanNumeralParser class
  * @author erno
  *
  */
-class RomanNumeralParserTest {
+public class RomanNumeralParserTest {
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 	}
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	@Test
-	@DisplayName("Convert 0 into Roman numeral, must give an empty result")
-	void testParseInt_0() {
+	public void testParseIntZeroShouldProduceEmptyString_0() {
 		assertTrue(RomanNumeralParser.parseInt(0).isEmpty());
 	}	
 
 	@Test
-	@DisplayName("Convert from 1 to 20 into Roman numeral and verify the results")
-	void testParseInt_1to20() {
+	public void testParseIntegersFromOneToTwentyShouldSucceed() {
 		// Expected results in array
 		final String expectedResults[] = new String[] {
 				"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", 
@@ -54,13 +45,12 @@ class RomanNumeralParserTest {
 			String result = RomanNumeralParser.parseInt(i);
 			String failMsg = String.format("Fail: %d should be %s but was %s", 
 					i, expectedResults[i], result);
-			assertTrue(expectedResults[i].equals(result), failMsg);
+			assertEquals(failMsg, expectedResults[i], result);
 		}	
 	}
 
 	@Test
-	@DisplayName("Convert specific numbers into Roman numeral and verify the results")
-	void testParseInt_selectedNumbers() {
+	public void testParseIntWithSelectedNumbersShouldSucceed() {
 		// Expected results in array
 		final String expectedResults[] = new String[] {
 				"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
@@ -81,42 +71,46 @@ class RomanNumeralParserTest {
 			String result = RomanNumeralParser.parseInt(testedNumbers[i]);
 			String failMsg = String.format("Fail: %d should be %s but was %s", 
 					testedNumbers[i], expectedResults[i], result);
-			assertEquals(expectedResults[i], result, failMsg);
+			assertEquals(failMsg, expectedResults[i], result);
 		}		
 	}
 		
 	@Test
-	@DisplayName("Convert integers from 1 to 3000 into Roman numeral, must give a result")
-	void testParseIntWithRange() {
+	public void testParseIntWithRangeOfValidValuesShouldProduceResult() {
 		for(int i=1; i<=3000; ++i) {
 			String roman = RomanNumeralParser.parseInt(i);
 			assertFalse(roman.isEmpty());
 		}
 	}
 
-	@Test
-	@DisplayName("Parse roman numeral which is not valid")
-	void testParseRomanWithIllegal() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-				RomanNumeralParser.parseRoman("");
-		});
-		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			RomanNumeralParser.parseRoman("ABC");
-		});		
-		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			RomanNumeralParser.parseRoman("VI1");
-		});				
-
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			RomanNumeralParser.parseRoman("1VI");
-		});	
+	/**
+	 * Test helper method for testing expected exception (IllegalArgumentException)
+	 * with JUnit4
+	 * @param argument Roman numeral to parse
+	 * @return true if exception was thrown, otherwise false
+	 */
+	private boolean assertThrowsIllegalArgumentExceptionHelper(String argument) {
+		boolean result = false;
+		try {
+			RomanNumeralParser.parseRoman(argument);
+		} catch(Exception e) {
+			if(e.getClass().getSimpleName()== "IllegalArgumentException") {
+				result = true;
+			}
+		}
+		return result;
 	}
 	
 	@Test
-	@DisplayName("Parse roman numerals to produce a integer values")
-	void testParseRoman() {
+	public void testParseRomanWithIllegaArgumentShouldFailWithExceptionl() {
+		assertThrowsIllegalArgumentExceptionHelper("");
+		assertThrowsIllegalArgumentExceptionHelper("ABC");
+		assertThrowsIllegalArgumentExceptionHelper("VI1");
+		assertThrowsIllegalArgumentExceptionHelper("1VI");
+	}
+	
+	@Test
+	public void testParseRomanWithSetOfValidNumeralsShouldSucceed() {
 		// Roman numerals to be converted to integer
 		final String romanStrings[] = new String[] {
 				"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
@@ -140,7 +134,7 @@ class RomanNumeralParserTest {
 			String failStr = String.format(
 					"\"%s\" should produce value %d but result was %d", 
 					romanStrings[i], expectedResults[i], result);
-			assertEquals(expectedResults[i], result, failStr);
+			assertTrue(failStr, expectedResults[i]==result);
 		}
 	}	
 }

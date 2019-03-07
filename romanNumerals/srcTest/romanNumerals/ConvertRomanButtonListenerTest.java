@@ -1,38 +1,24 @@
 package romanNumerals;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.*;
+import org.junit.*;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 /**
  * Unit test cases for ConvertRomanButtonListener class
  * @author erno
  *
  */
-class ConvertRomanButtonListenerTest {
+public class ConvertRomanButtonListenerTest {
 	// Required classes for the test
 	private JTextField sourceField;
 	private JTextField targetField;
 	private JButton actionButton;
 	private ConvertRomanButtonListener listener;
 	
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		sourceField =  new JTextField();
 		targetField =  new JTextField();		
 		actionButton = new JButton();
@@ -40,13 +26,12 @@ class ConvertRomanButtonListenerTest {
 		actionButton.addActionListener(listener);
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	@Test
-	@DisplayName("Test that the event is triggered and conversion succeeds, multiple roman numerals")
-	void testListenerWithValidRomanNumerals() {
+	public void testListenerWithValidRomanNumeralsShouldSucceed() {
 		// Roman numerals to be tested
 		final String testedRomans[] = new String[] {
 				"XI", "XV", "XXI", "XL", "L", "XC", "C", "CX", "CD",
@@ -71,10 +56,9 @@ class ConvertRomanButtonListenerTest {
 					Integer.parseInt(targetField.getText()));			
 		}		
 	}
-	@Test
 
-	@DisplayName("Test that the event is triggered and fails, multiple invalid roman numerals")
-	void testListenerWithInvalidRomanNumerals() {
+	@Test
+	public void testListenerWithInvalidRomanNumerals() {
 		// Roman numerals to be tested
 		final String testedRomans[] = new String[] {
 				"XIa", "zXV", "not a roman", "whatever", "1I"
@@ -88,5 +72,4 @@ class ConvertRomanButtonListenerTest {
 			assertEquals(targetField.getText(), ConvertRomanButtonListener.TXT_VALUE_NOT_ROMAN);
 		}		
 	}
-	
 }	
