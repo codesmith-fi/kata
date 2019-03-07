@@ -7,11 +7,39 @@ Current content
 
 fizzbuzz
 --------
-An implementation of FizzBuzz kata (http://codingdojo.org/kata/FizzBuzz/) in java. 
-Includes tests (JUnit5), no GUI.
+A java based implementation of FizzBuzz kata.
+See http://codingdojo.org/kata/FizzBuzz/ for info.
+Includes tests (JUnit5), there is no GUI for this application.
 
 romanNumerals
-An implementation of Roman Numerals kata (http://codingdojo.org/kata/RomanNumerals/)
+-------------
+A java based implementation of Roman Numerals kata 
+See http://codingdojo.org/kata/RomanNumerals/ for info.
 
-Converts between Roman numeral strings and integers. Includes tests (JUnit5), No GUI.
+Converts between Roman numeral strings and integers. Includes tests (JUnit4).
+Application launches Swing based UI if no arguments are given in the command
+line. With arguments the operation is different.
+ Argument -r displays conversion between integer values 0-1000 and Roman numeral
+ Argument -i displays conversion between set of Roman numerals and integer values
 
+Build in 'kata/romanNumerals' folder using 'ant'
+    Run the unit tests with full build
+        ant test
+    Run the calculator application with UI 
+        ant run
+    
+    The application jar is placed into './release' folder in build
+    See build.xml for other tasks like 'clean'
+'ant test' runs the unit tests and reports are generated as xml, txt and html.
+ Reports are generated to './junit' folder.
+
+General comments
+----------------
+Excersices were done in TDD as much as possible. Tests were written before the
+code meant to be tested. Refactoring was used when new requirements caused
+changes to the design and implementation.
+
+Written using Eclipse Photon in Linux operating system.
+
+Algorithms are designed to be iterative, they could probably be recursive but
+it was not point of this excercise. Feel free to improve the code. :-)
