@@ -2,7 +2,6 @@ package romanNumerals;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -98,7 +97,6 @@ class romanNumeralParserTest {
 	@Test
 	@DisplayName("Parse roman numeral which is not valid")
 	void testParseRomanWithIllegal() {
-		System.out.println("empty");
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 				romanNumeralParser.parseRoman("");
 		});

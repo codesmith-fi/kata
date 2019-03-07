@@ -78,6 +78,8 @@ public class romanNumeralParser {
 	
 	/**
 	 * Display a Roman number representation of the given integer value
+	 * Iterative implementation, might be more elegant if done recursively
+	 * but I decided to go with iterative method.
 	 * @param value numerical value to be converted to Roman numerals
 	 * @return Roman number representation of the parameter value
 	 */
@@ -125,7 +127,9 @@ public class romanNumeralParser {
 	}
 	
 	/**
-	 * Convert a Roman numeral string into integer
+	 * Convert a Roman numeral string into integer. 
+	 * Iterative implementation, might be more elegant if done recursively
+	 * but I decided to go with iterative method.
 	 * @param String representation of a Roman numeral
 	 * @return integer value of the Roman numeral submitted
 	 * @throws IllegalArgumentException if the given Roman numeral is not valid
