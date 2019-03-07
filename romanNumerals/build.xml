@@ -105,7 +105,4 @@
     <target name="run" depends="jar">
         <java jar="${distribution.dir}/${ant.project.name}.jar" fork="true" />
     </target>
-    <target name="run" depends="jar">
-        <java jar="${distribution.dir}/${ant.project.name}.jar" fork="true" />
-    </target>
 </project>
