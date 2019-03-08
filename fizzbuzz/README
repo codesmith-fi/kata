@@ -7,6 +7,8 @@ Implement a program which goes through numbers from 1 to 100 and prints
 either Fizz, Buzz, FizzBuzz or the number itself depending if it is 
 divisible by three, five, both or neither OR contains a character "3" or 5.
 
+There is no UI, this is a text mode/console application. All output to stdout.
+
 Usage:
 - Check numbers 1 to 100
 	java -jar fizzbuzz.jar
@@ -18,11 +20,26 @@ Usage:
 	java -jar fizzbuzz.jar 53	Result "FizzBuzz"
 	java -jar fizzbuzz.jar 51	Result "Buzz"
 
+Building and running:
+---------------------
+Either create Eclipse workspace or use the provided ant build provided
+in the 'fizzbuzz/' folder.
+
+Provided ant tasks:
+	ant test 	build project with tests and execute the tests
+	ant run 	build project and execute the jar
+	ant jar		just build and create application jar
+	ant clean	clean all build artifacts
+
+The application jar is placed into './release' folder during build
+See build.xml for other tasks.
+
+'ant test' runs the unit tests and reports are generated as xml, txt and html.
+ Reports are generated to './junit' folder.
+
 Solution:
 ---------
-Project implemented using Eclipse IDE (Photon) and the tests done JUnit
-Jupiter.
-
+Project implemented using Eclipse IDE (Photon) and the tests done JUnit4.
 Project was done using TDD so the tests were written first.
 
 Release 1.0 - Stage1:

@@ -1,2 +1,5 @@
-/bin/
-/binTest/
+bin/
+binTest/
+junit/
+release/
+
