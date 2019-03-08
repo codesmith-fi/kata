@@ -31,6 +31,9 @@ Change into subproject folder and execute
     ant test        builds and executes unit tests, reports will
                     be generated into the projects junit subfolder.
 
+I used OpenJDK 11 and ant 1.9.13. Tested on both Ubuntu Linux 18.x
+and Windows 10.
+
 General comments
 ----------------
 Excersices were done in TDD as much as possible. Tests were written before the
