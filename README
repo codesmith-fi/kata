@@ -9,29 +9,17 @@ fizzbuzz
 --------
 A java based implementation of FizzBuzz kata.
 See http://codingdojo.org/kata/FizzBuzz/ for info.
-Includes tests (JUnit5), there is no GUI for this application.
+There is no GUI for this application.
+
+See file 'fizzbuzz/README'
 
 romanNumerals
 -------------
 A java based implementation of Roman Numerals kata 
 See http://codingdojo.org/kata/RomanNumerals/ for info.
+GUI written in Swing.
 
-Converts between Roman numeral strings and integers. Includes tests (JUnit4).
-Application launches Swing based UI if no arguments are given in the command
-line. With arguments the operation is different.
- Argument -r displays conversion between integer values 0-1000 and Roman numeral
- Argument -i displays conversion between set of Roman numerals and integer values
-
-Build in 'kata/romanNumerals' folder using 'ant'
-    Run the unit tests with full build
-        ant test
-    Run the calculator application with UI 
-        ant run
-    
-    The application jar is placed into './release' folder in build
-    See build.xml for other tasks like 'clean'
-'ant test' runs the unit tests and reports are generated as xml, txt and html.
- Reports are generated to './junit' folder.
+See file 'romanNumerals/README"
 
 General comments
 ----------------
