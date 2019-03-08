@@ -1,0 +1,66 @@
+romanNumerals kata - http://codingdojo.org/kata/RomanNumerals/
+Author: Erno Pakarinen (erpakari@gmail.com)
+
+Description:
+------------
+Implement a program which converts between integers and Roman numeral.
+
+Application launches Swing based UI if no arguments are given in the command
+line. With arguments the operation is different.
+
+Building and running:
+---------------------
+Either create Eclipse workspace or use the provided ant build provided
+in the 'fizzbuzz/' folder.
+
+Build in the main 'romanNumerals' folder using 'ant'
+    Run the unit tests with full build
+        ant test
+    Run the calculator application with UI 
+        ant run
+    
+The application jar is placed into './release' folder during build
+See build.xml for other tasks like 'clean'
+
+'ant test' runs the unit tests and reports are generated as xml, txt and html.
+ Reports are generated to './junit' folder.
+
+romanNumerals can be run from terminal with command line arguments:
+	-r displays integer -> Roman conversion for numbers up to 1000
+	-i displays Roman -> integer conversion for selected Roman numerals
+
+e.g.
+	java -jar romanNumerals.jar		-> UI opens up
+	java -jar romanNumerals.jar -r 	-> display integer -> roman conversion
+	java -jar romanNumerals.jar -i 	-> display roman -> integer conversion
+
+
+Building:
+---------
+Either create Eclipse workspace or use the provided ant build provided
+in the 'fizzbuzz/' folder.
+
+Provided ant tasks:
+	ant test 	build project with tests and execute the tests
+	ant run 	build project and execute the jar
+	ant jar		just build and create application jar
+	ant clean	clean all build artifacts
+
+Solution:
+---------
+Project implemented using Eclipse IDE (Photon) and the tests done JUnit4.
+
+Project was done using TDD so the tests were written first.
+
+Release 2.1 - Stage1:
+---------------------
+- Goes through numbers 1 to 1000 and prints out the Roman numeral for it
+
+Release 2.2 - Stage2 - new requirements
+- Implemented conversion from Roman numeral to integer value
+
+Release 2.3 - Extra stage - UI
+- Implemented a simple calculator with Swing based UI
+- Command line arguments can be used to control how the application starts
+	-r or -i argument causes app to run in stdout
+	no argument launches the UI for calculator
