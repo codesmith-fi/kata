@@ -21,6 +21,16 @@ GUI written in Swing.
 
 See file 'romanNumerals/README"
 
+Building projects
+-----------------
+Either using a IDE of your choice (e.g. Eclipse) or by using the
+ant tool.
+Change into subproject folder and execute
+    ant release     builds and creates jar into release folder
+    ant run         builds and executes the program 
+    ant test        builds and executes unit tests, reports will
+                    be generated into the projects junit subfolder.
+
 General comments
 ----------------
 Excersices were done in TDD as much as possible. Tests were written before the
