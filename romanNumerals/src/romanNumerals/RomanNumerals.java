@@ -1,5 +1,7 @@
 package romanNumerals;
 
+import java.awt.Container;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -71,7 +73,7 @@ public class RomanNumerals extends JFrame {
 		}
 		else {
 			System.out.println("Displaying the calculator UI");
-			var ui = new RomanNumerals();
+			RomanNumerals ui = new RomanNumerals();
 			ui.setVisible(true);
 		}
 	}
@@ -89,34 +91,34 @@ public class RomanNumerals extends JFrame {
 		
 		setupMenuBar();	
 		
-		var pane = getContentPane();
-		var layout = new GroupLayout(pane);
+		Container pane = getContentPane();
+		GroupLayout layout = new GroupLayout(pane);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setAutoCreateGaps(true);
 		pane.setLayout(layout);
 				
 		// Labels for possible operations
-		var labelConvertRoman = new JLabel(TXT_LABEL_CONVERTROMAN);
-		var labelConvertInteger = new JLabel(TXT_LABEL_CONVERTINTEGER);
-		var labelConversionResult = new JLabel(TXT_LABEL_RESULT);		
+		JLabel labelConvertRoman = new JLabel(TXT_LABEL_CONVERTROMAN);
+		JLabel labelConvertInteger = new JLabel(TXT_LABEL_CONVERTINTEGER);
+		JLabel labelConversionResult = new JLabel(TXT_LABEL_RESULT);		
 		
-		var textInputRoman = new JTextField();
+		JTextField textInputRoman = new JTextField();
 		textInputRoman.setToolTipText(TXT_INPUT_CONVERTROMAN_TOOLTIP);
-		var textInputInteger = new JTextField();
+		JTextField textInputInteger = new JTextField();
 		textInputInteger.setToolTipText(TXT_INPUT_CONVERTINTEGER_TOOLTIP);
 		// Read only text field for the result
-		var textResultValue = new JTextField();
+		JTextField textResultValue = new JTextField();
 		textResultValue.setEditable(false);
 		
 		// Create and initialize the needed buttons
-		var buttonQuit = new JButton(TXT_BUTTON_QUIT);
+		JButton buttonQuit = new JButton(TXT_BUTTON_QUIT);
 		buttonQuit.addActionListener(new QuitListener());
 		buttonQuit.setToolTipText(TXT_BUTTON_QUIT_TOOLTIP);
-		var buttonCalculateRoman = new JButton(TXT_CALCULATE_ROMAN);
+		JButton buttonCalculateRoman = new JButton(TXT_CALCULATE_ROMAN);
 		buttonCalculateRoman.addActionListener(
 				new ConvertRomanButtonListener(textResultValue, textInputRoman));
 		buttonCalculateRoman.setActionCommand("roman");
-		var buttonCalculateInteger = new JButton(TXT_CALCULATE_INTEGER);
+		JButton buttonCalculateInteger = new JButton(TXT_CALCULATE_INTEGER);
 		buttonCalculateInteger.addActionListener(
 				new ConvertIntegerButtonListener(textResultValue, textInputInteger));
 		buttonCalculateInteger.setActionCommand("int");
@@ -172,9 +174,9 @@ public class RomanNumerals extends JFrame {
 	 * Setup the wanted menu and menu items
 	 */
 	private void setupMenuBar() {
-		var menubar = new JMenuBar();
-		var menu = new JMenu();
-		var menuitemQuit = new JMenuItem();
+		JMenuBar menubar = new JMenuBar();
+		JMenu menu = new JMenu();
+		JMenuItem menuitemQuit = new JMenuItem();
 		menuitemQuit.setText(TXT_BUTTON_QUIT);
 		menuitemQuit.addActionListener(new QuitListener());
 		menu.add(menuitemQuit);		

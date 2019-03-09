@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author erno
- *
- */
-module fizzbuzz {
-}

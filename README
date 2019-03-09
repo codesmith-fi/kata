@@ -40,7 +40,8 @@ Excersices were done in TDD as much as possible. Tests were written before the
 code meant to be tested. Refactoring was used when new requirements caused
 changes to the design and implementation.
 
-Written using Eclipse Photon in Linux operating system.
+Written using Eclipse Photon in Linux operating system. 
+Tested under Java version  8 (OpenJDK8).
 
 Algorithms are designed to be iterative, they could probably be recursive but
 it was not point of this excercise. Feel free to improve the code. :-)
